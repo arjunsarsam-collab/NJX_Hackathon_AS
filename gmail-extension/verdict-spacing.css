@@ -1,5 +1,7 @@
 .safecircle-dialog,
-.safecircle-dialog::after{
+.safecircle-dialog::after,
+.safecircle-verdict,
+.safecircle-more{
   border-radius:0!important;
 }
 
