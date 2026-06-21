@@ -1,18 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "CyberShield Gmail Guard",
-  "version": "0.3.2",
+  "name": "DrumLine Gmail Guard",
+  "version": "0.3.3",
   "description": "Checks visible Gmail inbox information for phishing warning signs before a message is opened.",
   "permissions": ["storage"],
   "host_permissions": ["https://mail.google.com/*"],
   "action": {
-    "default_title": "CyberShield Gmail Guard",
+    "default_title": "DrumLine Gmail Guard",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
-      "js": ["scoring.js", "content.js", "maintain-highlights.js", "verdict-copy.js"],
+      "js": ["scoring.js", "content.js", "maintain-highlights.js", "verdict-copy.js", "drumline-brand.js"],
       "css": ["styles.css", "verdict.css", "inbox-only.css", "verdict-spacing.css"],
       "run_at": "document_idle"
     }
