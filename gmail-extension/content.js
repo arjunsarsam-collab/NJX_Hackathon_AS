@@ -73,22 +73,27 @@
 
     overlay.innerHTML = `
       <section class="safecircle-dialog safecircle-verdict-dialog" role="dialog" aria-modal="true" aria-labelledby="safecircle-question">
-        <button class="safecircle-close" aria-label="Close">×</button>
-        <h2 id="safecircle-question" class="safecircle-question">Is this a Scam?</h2>
-        <div class="safecircle-verdict ${likelyScam ? 'yes' : 'no'}">${likelyScam ? 'YES' : 'NO'}</div>
-        <button class="safecircle-more" type="button" aria-expanded="false">More...</button>
+        <div class="safecircle-product-bar">
+          <span>CyberShield Security</span>
+          <button class="safecircle-close" aria-label="Close">×</button>
+        </div>
+        <div class="safecircle-dialog-body">
+          <h2 id="safecircle-question" class="safecircle-question">Is this a scam?</h2>
+          <div class="safecircle-verdict ${likelyScam ? 'yes' : 'no'}">${likelyScam ? 'YES' : 'NO'}</div>
+          <button class="safecircle-more" type="button" aria-expanded="false">More...</button>
 
-        <div class="safecircle-more-panel" hidden>
-          <p class="safecircle-percentage"><strong>Estimated scam likelihood:</strong> ${result.score}%</p>
-          <p><strong>Subject:</strong> ${escapeHtml(data.subject || '(No subject)')}</p>
-          <h3>${likelyScam ? 'Why this may be a scam' : 'Why SafeCircle gave this result'}</h3>
-          <ul>${result.reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
-          <h3>How you should proceed</h3>
-          <ol>${nextSteps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
-          <p class="safecircle-note">This estimate is based only on the visible sender, subject, and inbox preview. It is not a guarantee.</p>
-          <div class="safecircle-actions">
-            <button class="safecircle-read">Read this aloud</button>
-            <button class="safecircle-dismiss">Close</button>
+          <div class="safecircle-more-panel" hidden>
+            <p class="safecircle-percentage"><strong>Estimated scam likelihood:</strong> ${result.score}%</p>
+            <p><strong>Subject:</strong> ${escapeHtml(data.subject || '(No subject)')}</p>
+            <h3>${likelyScam ? 'Why CyberShield flagged this email' : 'Why CyberShield marked this email as lower risk'}</h3>
+            <ul>${result.reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
+            <h3>Recommended next steps</h3>
+            <ol>${nextSteps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+            <p class="safecircle-note">CyberShield analyzes only the visible sender, subject, and inbox preview. This result is guidance, not a guarantee.</p>
+            <div class="safecircle-actions">
+              <button class="safecircle-read">Read aloud</button>
+              <button class="safecircle-dismiss">Close</button>
+            </div>
           </div>
         </div>
       </section>`;
@@ -113,7 +118,7 @@
     overlay.querySelector('.safecircle-dismiss').addEventListener('click', close);
     overlay.querySelector('.safecircle-read').addEventListener('click', () => {
       speechSynthesis.cancel();
-      const message = `Is this a scam? ${likelyScam ? 'Yes' : 'No'}. Estimated scam likelihood ${result.score} percent. ${result.reasons.join(' ')} Recommended next steps. ${nextSteps.join(' ')}`;
+      const message = `CyberShield Security. Is this a scam? ${likelyScam ? 'Yes' : 'No'}. Estimated scam likelihood ${result.score} percent. ${result.reasons.join(' ')} Recommended next steps. ${nextSteps.join(' ')}`;
       speechSynthesis.speak(new SpeechSynthesisUtterance(message));
     });
   }
@@ -125,14 +130,18 @@
     overlay.id = 'safecircle-open-warning';
     overlay.innerHTML = `
       <section class="safecircle-dialog danger" role="alertdialog" aria-modal="true" aria-labelledby="safecircle-warning-title">
-        <div class="safecircle-warning-icon">!</div>
-        <h2 id="safecircle-warning-title">Are you sure you want to open this email?</h2>
-        <p class="safecircle-danger-text">This email is likely a scam or phishing attempt.</p>
-        <p>SafeCircle estimated a ${result.score}% scam likelihood based on the visible inbox information.</p>
-        <ul>${result.reasons.slice(0, 3).map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
-        <div class="safecircle-actions">
-          <button class="safecircle-back">No, go back</button>
-          <button class="safecircle-open-anyway">Yes, open anyway</button>
+        <div class="safecircle-product-bar">
+          <span>CyberShield Security</span>
+        </div>
+        <div class="safecircle-dialog-body">
+          <h2 id="safecircle-warning-title">Open this message?</h2>
+          <p class="safecircle-danger-text">CyberShield identified this email as a likely scam or phishing attempt.</p>
+          <p>Estimated scam likelihood: <strong>${result.score}%</strong></p>
+          <ul>${result.reasons.slice(0, 3).map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
+          <div class="safecircle-actions">
+            <button class="safecircle-back">Cancel</button>
+            <button class="safecircle-open-anyway">Open anyway</button>
+          </div>
         </div>
       </section>`;
 
@@ -168,7 +177,7 @@
     button.type = 'button';
     button.className = `safecircle-learn-more ${result.level}`;
     button.textContent = 'Learn more';
-    button.title = 'See whether SafeCircle thinks this email is a scam';
+    button.title = 'View CyberShield security details';
     button.addEventListener('click', event => {
       event.preventDefault();
       event.stopPropagation();
