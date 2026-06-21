@@ -39,29 +39,20 @@
   function looksLikeEmailRow(row) {
     if (!(row instanceof HTMLElement)) return false;
     if (row.dataset.safecircleScanned === 'true') return false;
-    return Boolean(row.querySelector('[email], [data-hovercard-id*="@"], .bog, .y2, [data-thread-id]'));
+    return row.matches('tr.zA') && Boolean(row.querySelector('.bog'));
   }
 
   function isLikelyScam(result) {
-    return result.level === 'red';
+    return result.level === 'red' || result.level === 'yellow';
   }
 
   function nextStepsFor(result) {
     if (isLikelyScam(result)) {
       return [
-        'Do not click links, open attachments, reply, or send money.',
+        'Do not click links, open attachments, reply, or send money yet.',
         'Contact the person or company using a phone number or website you already trust.',
         'Never share a password, PIN, payment information, or verification code.',
         'Report the email as phishing and delete it if the sender cannot be verified.'
-      ];
-    }
-
-    if (result.level === 'yellow') {
-      return [
-        'Pause before clicking links or opening attachments.',
-        'Check the full sender address for misspellings or unfamiliar domains.',
-        'Verify unusual requests through a separate trusted method.',
-        'Ask a trusted person for help if you are still unsure.'
       ];
     }
 
@@ -81,37 +72,24 @@
     overlay.id = 'safecircle-overlay';
 
     overlay.innerHTML = `
-      <section class="safecircle-dialog" role="dialog" aria-modal="true" aria-labelledby="safecircle-question">
+      <section class="safecircle-dialog safecircle-verdict-dialog" role="dialog" aria-modal="true" aria-labelledby="safecircle-question">
         <button class="safecircle-close" aria-label="Close">×</button>
-
-        <h2 id="safecircle-question" class="safecircle-question">Is this a scam?</h2>
+        <h2 id="safecircle-question" class="safecircle-question">Is this a Scam?</h2>
         <div class="safecircle-verdict ${likelyScam ? 'yes' : 'no'}">${likelyScam ? 'YES' : 'NO'}</div>
-        <p class="safecircle-verdict-note">${
-          likelyScam
-            ? 'This email is likely a scam or phishing attempt.'
-            : result.level === 'yellow'
-              ? 'Probably not, but there are warning signs. Be careful.'
-              : 'SafeCircle did not find major warning signs in the visible email preview.'
-        }</p>
-
         <button class="safecircle-more" type="button" aria-expanded="false">More...</button>
 
         <div class="safecircle-more-panel" hidden>
           <p class="safecircle-percentage"><strong>Estimated scam likelihood:</strong> ${result.score}%</p>
           <p><strong>Subject:</strong> ${escapeHtml(data.subject || '(No subject)')}</p>
-
           <h3>${likelyScam ? 'Why this may be a scam' : 'Why SafeCircle gave this result'}</h3>
           <ul>${result.reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul>
-
           <h3>How you should proceed</h3>
           <ol>${nextSteps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
-
-          <p class="safecircle-note">This percentage is a warning estimate based only on the visible sender, subject, and inbox preview. It is not a guarantee.</p>
-        </div>
-
-        <div class="safecircle-actions">
-          <button class="safecircle-read">Read this aloud</button>
-          <button class="safecircle-dismiss">Close</button>
+          <p class="safecircle-note">This estimate is based only on the visible sender, subject, and inbox preview. It is not a guarantee.</p>
+          <div class="safecircle-actions">
+            <button class="safecircle-read">Read this aloud</button>
+            <button class="safecircle-dismiss">Close</button>
+          </div>
         </div>
       </section>`;
 
@@ -119,7 +97,6 @@
 
     const close = () => overlay.remove();
     overlay.querySelector('.safecircle-close').addEventListener('click', close);
-    overlay.querySelector('.safecircle-dismiss').addEventListener('click', close);
     overlay.addEventListener('click', event => {
       if (event.target === overlay) close();
     });
@@ -133,6 +110,7 @@
       moreButton.setAttribute('aria-expanded', String(willOpen));
     });
 
+    overlay.querySelector('.safecircle-dismiss').addEventListener('click', close);
     overlay.querySelector('.safecircle-read').addEventListener('click', () => {
       speechSynthesis.cancel();
       const message = `Is this a scam? ${likelyScam ? 'Yes' : 'No'}. Estimated scam likelihood ${result.score} percent. ${result.reasons.join(' ')} Recommended next steps. ${nextSteps.join(' ')}`;
@@ -237,7 +215,7 @@
   }
 
   function scanInbox() {
-    document.querySelectorAll('tr').forEach(row => {
+    document.querySelectorAll('tr.zA').forEach(row => {
       if (!looksLikeEmailRow(row) || processed.has(row)) return;
       processed.add(row);
 
