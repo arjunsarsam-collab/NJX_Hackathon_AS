@@ -205,3 +205,31 @@ tr:focus-within .safecircle-learn-more{
 .safecircle-dialog.danger{
   border:4px solid #d93025;
 }
+
+/* Keep Gmail text and message cells unhighlighted. Risk is shown only by a slim left indicator. */
+tr.safecircle-row-green,
+tr.safecircle-row-green > td,
+tr.safecircle-row-yellow,
+tr.safecircle-row-yellow > td,
+tr.safecircle-row-red,
+tr.safecircle-row-red > td,
+tr.safecircle-row-green:hover,
+tr.safecircle-row-green:hover > td,
+tr.safecircle-row-yellow:hover,
+tr.safecircle-row-yellow:hover > td,
+tr.safecircle-row-red:hover,
+tr.safecircle-row-red:hover > td{
+  background-color:inherit!important;
+}
+
+tr.safecircle-row-green > td:first-child{
+  box-shadow:inset 4px 0 0 #34a853!important;
+}
+
+tr.safecircle-row-yellow > td:first-child{
+  box-shadow:inset 4px 0 0 #f9ab00!important;
+}
+
+tr.safecircle-row-red > td:first-child{
+  box-shadow:inset 4px 0 0 #ea4335!important;
+}
