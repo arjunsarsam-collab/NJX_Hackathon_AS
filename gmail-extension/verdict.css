@@ -1,99 +1,138 @@
 :root{
-  --cs-window:#202020;
-  --cs-panel:#181818;
-  --cs-field:#111111;
-  --cs-border:#5a5a5a;
-  --cs-text:#f3f3f3;
-  --cs-muted:#c7c7c7;
-  --cs-button:#4a4a4a;
-  --cs-button-hover:#5b5b5b;
-  --cs-accent:#4cc2ff;
-  --cs-danger:#ff6b65;
-  --cs-safe:#6bd67a;
+  color-scheme: light dark;
+  --cs-bg:#ffffff;
+  --cs-panel:#f5f5f5;
+  --cs-border:#c8c8c8;
+  --cs-text:#1f1f1f;
+  --cs-muted:#5f6368;
+  --cs-button:#f3f3f3;
+  --cs-button-hover:#e8e8e8;
+  --cs-accent:#0b57d0;
+  --cs-danger:#b3261e;
+  --cs-danger-bg:#fce8e6;
+  --cs-safe:#137333;
+  --cs-safe-bg:#e6f4ea;
+  --cs-overlay:rgba(0,0,0,.42);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --cs-bg:#202124;
+    --cs-panel:#292a2d;
+    --cs-border:#5f6368;
+    --cs-text:#f1f3f4;
+    --cs-muted:#bdc1c6;
+    --cs-button:#303134;
+    --cs-button-hover:#3c4043;
+    --cs-accent:#8ab4f8;
+    --cs-danger:#f28b82;
+    --cs-danger-bg:#3c1f1f;
+    --cs-safe:#81c995;
+    --cs-safe-bg:#193825;
+    --cs-overlay:rgba(0,0,0,.58);
+  }
 }
 
 #safecircle-overlay,
 #safecircle-open-warning{
-  background:rgba(0,0,0,.56)!important;
+  background:var(--cs-overlay)!important;
   backdrop-filter:blur(2px);
 }
 
 .safecircle-dialog{
-  width:min(560px,calc(100vw - 36px))!important;
+  width:min(540px,calc(100vw - 36px))!important;
   max-height:calc(100vh - 36px)!important;
   overflow:auto!important;
-  border:1px solid #707070!important;
+  border:1px solid var(--cs-border)!important;
   border-radius:2px!important;
-  background:var(--cs-window)!important;
+  background:var(--cs-bg)!important;
   color:var(--cs-text)!important;
   padding:0!important;
-  box-shadow:0 18px 45px rgba(0,0,0,.55)!important;
-  font-family:"Segoe UI",Arial,sans-serif!important;
+  box-shadow:0 14px 42px rgba(0,0,0,.35)!important;
+  font-family:"Segoe UI",Roboto,Arial,sans-serif!important;
 }
 
 .safecircle-product-bar{
   position:relative;
   display:flex;
   align-items:center;
-  min-height:46px;
+  min-height:44px;
   padding:0 52px 0 18px;
-  border-top:2px solid var(--cs-accent);
-  border-bottom:1px solid #353535;
+  border-bottom:1px solid var(--cs-border);
   background:var(--cs-panel);
-  color:#f5f5f5;
+  color:var(--cs-text);
   font-size:14px;
   font-weight:600;
 }
 
 .safecircle-dialog-body{
-  padding:28px 30px 30px;
+  padding:30px;
+}
+
+.safecircle-verdict-dialog .safecircle-dialog-body{
+  text-align:center;
 }
 
 .safecircle-question{
-  margin:0 0 20px!important;
+  margin:0 0 18px!important;
   color:var(--cs-text)!important;
-  text-align:left!important;
-  font-size:27px!important;
-  font-weight:400!important;
-  line-height:1.25;
+  text-align:center!important;
+  font-size:32px!important;
+  font-weight:600!important;
+  line-height:1.2;
 }
 
 .safecircle-verdict{
-  margin:0 0 18px!important;
-  text-align:left!important;
-  font:600 58px/1 "Segoe UI",Arial,sans-serif!important;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  min-width:170px;
+  min-height:84px;
+  margin:0 auto 18px!important;
+  border:1px solid var(--cs-border);
+  border-radius:2px!important;
+  padding:0 26px;
+  text-align:center!important;
+  font:700 54px/1 "Segoe UI",Roboto,Arial,sans-serif!important;
   letter-spacing:.5px!important;
 }
 
-.safecircle-verdict.yes{color:var(--cs-danger)!important}
-.safecircle-verdict.no{color:var(--cs-safe)!important}
+.safecircle-verdict.yes{
+  background:var(--cs-danger-bg)!important;
+  color:var(--cs-danger)!important;
+}
+
+.safecircle-verdict.no{
+  background:var(--cs-safe-bg)!important;
+  color:var(--cs-safe)!important;
+}
 
 .safecircle-more{
   display:inline-flex!important;
   align-items:center;
   justify-content:center;
-  min-width:112px;
-  min-height:40px;
-  margin:0!important;
-  border:1px solid #767676!important;
-  border-radius:0!important;
-  padding:9px 18px!important;
+  min-width:104px;
+  min-height:38px;
+  margin:0 auto!important;
+  border:1px solid var(--cs-border)!important;
+  border-radius:2px!important;
+  padding:8px 16px!important;
   background:var(--cs-button)!important;
-  color:#fff!important;
-  font:600 14px/1 "Segoe UI",Arial,sans-serif!important;
+  color:var(--cs-text)!important;
+  font:600 14px/1 "Segoe UI",Roboto,Arial,sans-serif!important;
   cursor:pointer;
 }
 
 .safecircle-more:hover,
 .safecircle-more:focus-visible{
   background:var(--cs-button-hover)!important;
-  outline:1px solid var(--cs-accent)!important;
-  outline-offset:-1px;
+  outline:2px solid color-mix(in srgb,var(--cs-accent) 40%,transparent)!important;
+  outline-offset:1px;
 }
 
 .safecircle-more-panel{
-  margin:26px 0 0!important;
-  border-top:1px solid #454545!important;
+  margin:24px 0 0!important;
+  border-top:1px solid var(--cs-border)!important;
   padding:22px 0 0!important;
   background:transparent!important;
   color:var(--cs-text)!important;
@@ -109,7 +148,7 @@
 
 .safecircle-more-panel h3{
   margin:22px 0 8px!important;
-  color:#fff!important;
+  color:var(--cs-text)!important;
   font-size:16px!important;
   font-weight:600!important;
 }
@@ -127,16 +166,18 @@
 
 .safecircle-percentage{
   margin:0 0 16px!important;
+  border:1px solid var(--cs-border)!important;
   border-left:3px solid var(--cs-accent)!important;
-  padding:11px 14px!important;
-  background:#171717!important;
-  color:#fff!important;
+  border-radius:2px!important;
+  padding:12px 14px!important;
+  background:var(--cs-panel)!important;
+  color:var(--cs-text)!important;
   font-size:15px!important;
 }
 
 .safecircle-note{
   margin-top:20px!important;
-  color:#a9a9a9!important;
+  color:var(--cs-muted)!important;
   font-size:12px!important;
   line-height:1.45!important;
 }
@@ -144,37 +185,39 @@
 .safecircle-actions{
   display:flex!important;
   justify-content:flex-end!important;
-  gap:6px!important;
+  gap:8px!important;
   margin-top:24px!important;
 }
 
 .safecircle-actions button{
-  min-width:132px!important;
-  min-height:41px!important;
-  border:1px solid #737373!important;
-  border-radius:0!important;
-  padding:10px 18px!important;
+  min-width:126px!important;
+  min-height:40px!important;
+  border:1px solid var(--cs-border)!important;
+  border-radius:2px!important;
+  padding:9px 18px!important;
   background:var(--cs-button)!important;
-  color:#fff!important;
-  font:600 14px/1 "Segoe UI",Arial,sans-serif!important;
+  color:var(--cs-text)!important;
+  font:600 14px/1 "Segoe UI",Roboto,Arial,sans-serif!important;
   cursor:pointer;
 }
 
 .safecircle-actions button:hover,
 .safecircle-actions button:focus-visible{
   background:var(--cs-button-hover)!important;
-  outline:1px solid var(--cs-accent)!important;
-  outline-offset:-1px;
+  outline:2px solid color-mix(in srgb,var(--cs-accent) 40%,transparent)!important;
+  outline-offset:1px;
 }
 
 .safecircle-open-anyway{
-  background:#626262!important;
+  background:var(--cs-danger)!important;
+  border-color:var(--cs-danger)!important;
+  color:#fff!important;
 }
 
 .safecircle-close{
   position:absolute!important;
-  top:5px!important;
-  right:5px!important;
+  top:4px!important;
+  right:4px!important;
   display:grid!important;
   place-items:center!important;
   width:36px!important;
@@ -182,8 +225,8 @@
   border:0!important;
   border-radius:0!important;
   background:transparent!important;
-  color:#dedede!important;
-  font-size:25px!important;
+  color:var(--cs-muted)!important;
+  font-size:24px!important;
   font-weight:300!important;
   cursor:pointer!important;
 }
@@ -195,10 +238,10 @@
 
 .safecircle-dialog.danger h2{
   margin:0 0 14px!important;
-  color:#fff!important;
+  color:var(--cs-text)!important;
   text-align:left!important;
   font-size:27px!important;
-  font-weight:400!important;
+  font-weight:600!important;
 }
 
 .safecircle-danger-text{
@@ -217,8 +260,9 @@
 @media(max-width:600px){
   .safecircle-dialog{width:calc(100vw - 18px)!important}
   .safecircle-dialog-body{padding:22px!important}
-  .safecircle-question,.safecircle-dialog.danger h2{font-size:23px!important}
-  .safecircle-verdict{font-size:50px!important}
+  .safecircle-question{font-size:27px!important}
+  .safecircle-verdict{font-size:46px!important;min-width:148px;min-height:72px}
+  .safecircle-dialog.danger h2{font-size:23px!important}
   .safecircle-actions{flex-direction:column-reverse!important}
   .safecircle-actions button{width:100%!important}
 }
