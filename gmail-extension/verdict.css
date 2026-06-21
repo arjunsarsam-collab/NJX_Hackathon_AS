@@ -1,0 +1,89 @@
+.safecircle-question{
+  margin:4px 0 14px!important;
+  text-align:center;
+  font-size:38px!important;
+  line-height:1.15;
+}
+
+.safecircle-verdict{
+  margin:0 auto 10px;
+  text-align:center;
+  font:900 72px/1 Arial,sans-serif;
+  letter-spacing:2px;
+}
+
+.safecircle-verdict.yes{color:#c5221f}
+.safecircle-verdict.no{color:#188038}
+
+.safecircle-verdict-note{
+  margin:0 auto 20px;
+  max-width:440px;
+  text-align:center;
+  font-size:18px;
+  font-weight:700;
+}
+
+.safecircle-more{
+  display:block;
+  margin:0 auto;
+  border:0;
+  border-radius:999px;
+  padding:9px 16px;
+  background:#e8eef7;
+  color:#17345f;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.safecircle-more:hover,
+.safecircle-more:focus-visible{background:#d7e4f8}
+
+.safecircle-more-panel{
+  margin-top:20px;
+  border-top:1px solid #d9e1ec;
+  padding-top:16px;
+}
+
+.safecircle-more-panel[hidden]{display:none!important}
+
+.safecircle-percentage{
+  margin:0 0 12px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:#f4f7fb;
+  font-size:18px;
+}
+
+.safecircle-warning-icon{
+  display:grid;
+  place-items:center;
+  width:72px;
+  height:72px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  background:#fce8e6;
+  color:#c5221f;
+  font:900 44px/1 Arial,sans-serif;
+}
+
+.safecircle-dialog.danger h2{
+  text-align:center;
+  font-size:30px;
+}
+
+.safecircle-danger-text{
+  color:#c5221f;
+  text-align:center;
+  font-size:21px;
+  font-weight:900;
+}
+
+.safecircle-open-anyway{
+  background:#c5221f!important;
+  color:#fff!important;
+}
+
+@media (max-width:600px){
+  .safecircle-question{font-size:31px!important}
+  .safecircle-verdict{font-size:58px}
+}
