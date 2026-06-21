@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "SafeCircle Gmail Guard",
-  "version": "0.1.8",
-  "description": "Flags suspicious Gmail messages before they are opened using simple yellow and red warnings.",
+  "name": "CyberShield Gmail Guard",
+  "version": "0.2.0",
+  "description": "Checks visible Gmail inbox information for phishing warning signs before a message is opened.",
   "permissions": ["storage"],
   "host_permissions": ["https://mail.google.com/*"],
   "action": {
-    "default_title": "SafeCircle Gmail Guard",
+    "default_title": "CyberShield Gmail Guard",
     "default_popup": "popup.html"
   },
   "content_scripts": [
