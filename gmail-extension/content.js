@@ -68,6 +68,7 @@
 
     const likelyScam = isLikelyScam(result);
     const nextSteps = nextStepsFor(result);
+    const verdictText = likelyScam ? 'LIKELY A SCAM' : 'UNLIKELY A SCAM';
     const overlay = document.createElement('div');
     overlay.id = 'safecircle-overlay';
 
@@ -78,9 +79,9 @@
           <button class="safecircle-close" aria-label="Close">×</button>
         </div>
         <div class="safecircle-dialog-body">
-          <h2 id="safecircle-question" class="safecircle-question">Is this a scam?</h2>
-          <div class="safecircle-verdict ${likelyScam ? 'yes' : 'no'}">${likelyScam ? 'YES' : 'NO'}</div>
-          <button class="safecircle-more" type="button" aria-expanded="false">More...</button>
+          <h2 id="safecircle-question" class="safecircle-question">Email security assessment</h2>
+          <div class="safecircle-verdict ${likelyScam ? 'yes' : 'no'}">${verdictText}</div>
+          <button class="safecircle-more" type="button" aria-expanded="false">View information</button>
 
           <div class="safecircle-more-panel" hidden>
             <p class="safecircle-percentage"><strong>Estimated scam likelihood:</strong> ${result.score}%</p>
@@ -111,14 +112,14 @@
     moreButton.addEventListener('click', () => {
       const willOpen = morePanel.hidden;
       morePanel.hidden = !willOpen;
-      moreButton.textContent = willOpen ? 'Less' : 'More...';
+      moreButton.textContent = willOpen ? 'Hide information' : 'View information';
       moreButton.setAttribute('aria-expanded', String(willOpen));
     });
 
     overlay.querySelector('.safecircle-dismiss').addEventListener('click', close);
     overlay.querySelector('.safecircle-read').addEventListener('click', () => {
       speechSynthesis.cancel();
-      const message = `CyberShield Security. Is this a scam? ${likelyScam ? 'Yes' : 'No'}. Estimated scam likelihood ${result.score} percent. ${result.reasons.join(' ')} Recommended next steps. ${nextSteps.join(' ')}`;
+      const message = `CyberShield Security. ${likelyScam ? 'Likely a scam' : 'Unlikely a scam'}. Estimated scam likelihood ${result.score} percent. ${result.reasons.join(' ')} Recommended next steps. ${nextSteps.join(' ')}`;
       speechSynthesis.speak(new SpeechSynthesisUtterance(message));
     });
   }
