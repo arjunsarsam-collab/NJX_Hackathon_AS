@@ -3,43 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SafeCircle Gmail Guard</title>
+  <title>CyberShield Gmail Guard</title>
   <style>
-    :root{--blue:#0b57d0;--blue-dark:#0842a0;--text:#202124;--muted:#5f6368;--border:#dadce0;--surface:#fff;--subtle:#f8fafd;--safe:#137333;--warn:#b06000;--danger:#b3261e}
+    :root{--bg:#202020;--panel:#181818;--field:#111;--border:#595959;--text:#f3f3f3;--muted:#bdbdbd;--accent:#4cc2ff;--safe:#63d471;--warn:#f5b642;--danger:#ff6b65;--button:#4a4a4a;--button-hover:#5a5a5a}
     *{box-sizing:border-box}
-    body{margin:0;width:360px;background:var(--surface);color:var(--text);font:14px/1.45 "Segoe UI",Roboto,Arial,sans-serif}
-    header{display:flex;align-items:center;gap:12px;padding:18px 20px 16px;border-bottom:1px solid var(--border);background:var(--subtle)}
-    .shield{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--blue);color:#fff;font-size:22px;font-weight:700;box-shadow:0 1px 2px rgba(60,64,67,.18)}
-    .title-wrap h1{margin:0;font-size:18px;font-weight:600;letter-spacing:-.2px}.title-wrap p{margin:2px 0 0;color:var(--muted);font-size:12px}
-    main{padding:18px 20px 20px}
-    .status-card{display:flex;align-items:center;gap:12px;border:1px solid #d2e3fc;border-radius:14px;padding:14px;background:#f8fbff}
-    .status-dot{width:12px;height:12px;border-radius:50%;background:var(--safe);box-shadow:0 0 0 4px rgba(19,115,51,.12)}
-    .status-card strong{display:block;font-size:14px}.status-card span{display:block;color:var(--muted);font-size:12px}
-    .section-title{margin:18px 0 9px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .stat{border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;background:#fff}
-    .stat strong{display:block;font-size:22px;font-weight:600}.stat span{font-size:11px;color:var(--muted)}
-    .legend{overflow:hidden;border:1px solid var(--border);border-radius:12px;background:#fff}
-    .legend-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #eceff1}.legend-row:last-child{border-bottom:0}
-    .legend-label{display:flex;align-items:center;gap:9px;font-weight:500}.dot{width:10px;height:10px;border-radius:50%}.green{background:var(--safe)}.yellow{background:#f9ab00}.red{background:#d93025}.legend small{color:var(--muted)}
-    button{width:100%;min-height:40px;margin-top:16px;border:1px solid var(--border);border-radius:20px;padding:9px 16px;background:#fff;color:var(--blue);font:600 14px/1 "Segoe UI",Roboto,Arial,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
-    button:hover{background:#f3f7fd;border-color:#c4d4ef}button:focus-visible{outline:3px solid rgba(11,87,208,.2);outline-offset:2px}
-    .note{margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
+    body{margin:0;width:360px;background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",Arial,sans-serif}
+    header{display:flex;align-items:center;gap:12px;padding:15px 18px;border-top:2px solid var(--accent);border-bottom:1px solid #353535;background:var(--panel)}
+    .shield{display:grid;place-items:center;width:38px;height:38px;border:1px solid #666;background:#292929;color:var(--accent);font-size:20px;font-weight:700}
+    .title-wrap h1{margin:0;font-size:17px;font-weight:600}.title-wrap p{margin:2px 0 0;color:var(--muted);font-size:12px}
+    main{padding:18px}
+    .status-card{display:flex;align-items:center;gap:11px;border:1px solid var(--border);padding:13px 14px;background:#171717}
+    .status-dot{width:11px;height:11px;border-radius:50%;background:var(--safe);box-shadow:0 0 0 3px rgba(99,212,113,.12)}
+    .status-card strong{display:block;font-size:14px;font-weight:600}.status-card span{display:block;color:var(--muted);font-size:12px}
+    .section-title{margin:18px 0 8px;color:#d4d4d4;font-size:12px;font-weight:600;letter-spacing:.45px;text-transform:uppercase}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+    .stat{border:1px solid var(--border);padding:12px 7px;text-align:center;background:#171717}
+    .stat strong{display:block;font-size:21px;font-weight:600}.stat span{color:var(--muted);font-size:11px}
+    .legend{border:1px solid var(--border);background:#171717}
+    .legend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #3b3b3b}.legend-row:last-child{border-bottom:0}
+    .legend-label{display:flex;align-items:center;gap:9px;font-weight:500}.dot{width:10px;height:10px;border-radius:50%}.green{background:var(--safe)}.yellow{background:var(--warn)}.red{background:var(--danger)}.legend small{color:var(--muted)}
+    button{width:100%;min-height:40px;margin-top:16px;border:1px solid #767676;border-radius:0;padding:9px 16px;background:var(--button);color:#fff;font:600 14px/1 "Segoe UI",Arial,sans-serif;cursor:pointer}
+    button:hover{background:var(--button-hover)}button:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
+    .note{margin:14px 0 0;color:#a9a9a9;font-size:11px;line-height:1.45}
   </style>
 </head>
 <body>
   <header>
     <div class="shield" aria-hidden="true">✓</div>
     <div class="title-wrap">
-      <h1>SafeCircle Gmail Guard</h1>
-      <p>Security guidance before you open an email</p>
+      <h1>CyberShield Gmail Guard</h1>
+      <p>Pre-open phishing protection</p>
     </div>
   </header>
 
   <main>
     <section class="status-card" aria-label="Protection status">
       <span class="status-dot" aria-hidden="true"></span>
-      <div><strong>Protection is active</strong><span>Visible Gmail messages are checked locally.</span></div>
+      <div><strong>Protection is active</strong><span>Visible inbox messages are being checked locally.</span></div>
     </section>
 
     <h2 class="section-title">Activity</h2>
@@ -57,7 +57,7 @@
     </section>
 
     <button id="reset">Reset activity totals</button>
-    <p class="note">SafeCircle checks only the sender, subject, and preview text already visible in Gmail. Email content is not uploaded or stored.</p>
+    <p class="note">CyberShield checks only the sender, subject, and preview text visible in Gmail. Email content is not uploaded or stored.</p>
   </main>
 
   <script src="popup.js"></script>
