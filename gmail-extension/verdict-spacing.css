@@ -9,13 +9,14 @@
 }
 
 .safecircle-verdict{
-  width:min(320px,100%)!important;
-  min-height:112px!important;
+  width:min(208px,100%)!important;
+  min-height:73px!important;
   margin:0 auto 24px!important;
-  padding:24px 32px!important;
-  font-size:58px!important;
+  padding:12px 18px!important;
+  font-size:66px!important;
   line-height:1!important;
   letter-spacing:.08em!important;
+  text-align:center!important;
 }
 
 .safecircle-more{
@@ -40,11 +41,12 @@
   }
 
   .safecircle-verdict{
-    width:min(260px,100%)!important;
-    min-height:96px!important;
+    width:min(169px,100%)!important;
+    min-height:62px!important;
     margin-bottom:22px!important;
-    font-size:50px!important;
-    padding:22px 24px!important;
+    font-size:56px!important;
+    padding:10px 14px!important;
+    text-align:center!important;
   }
 
   .safecircle-more{
