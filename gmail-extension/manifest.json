@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SafeCircle Gmail Guard",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Flags suspicious Gmail messages before they are opened using simple yellow and red warnings.",
   "permissions": ["storage"],
   "host_permissions": ["https://mail.google.com/*"],
@@ -13,7 +13,7 @@
     {
       "matches": ["https://mail.google.com/*"],
       "js": ["scoring.js", "content.js", "maintain-highlights.js"],
-      "css": ["styles.css", "verdict.css"],
+      "css": ["styles.css", "verdict.css", "inbox-only.css"],
       "run_at": "document_idle"
     }
   ]
