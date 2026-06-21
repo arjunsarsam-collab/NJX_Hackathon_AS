@@ -5,26 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CyberShield Gmail Guard</title>
   <style>
-    :root{--bg:#202020;--panel:#181818;--field:#111;--border:#595959;--text:#f3f3f3;--muted:#bdbdbd;--accent:#4cc2ff;--safe:#63d471;--warn:#f5b642;--danger:#ff6b65;--button:#4a4a4a;--button-hover:#5a5a5a}
+    :root{
+      color-scheme:light dark;
+      --bg:#ffffff;
+      --panel:#f5f5f5;
+      --border:#c8c8c8;
+      --text:#1f1f1f;
+      --muted:#5f6368;
+      --accent:#0b57d0;
+      --safe:#137333;
+      --warn:#b06000;
+      --danger:#b3261e;
+      --button:#f3f3f3;
+      --button-hover:#e8e8e8;
+    }
+    @media(prefers-color-scheme:dark){
+      :root{
+        --bg:#202124;
+        --panel:#292a2d;
+        --border:#5f6368;
+        --text:#f1f3f4;
+        --muted:#bdc1c6;
+        --accent:#8ab4f8;
+        --safe:#81c995;
+        --warn:#fdd663;
+        --danger:#f28b82;
+        --button:#303134;
+        --button-hover:#3c4043;
+      }
+    }
     *{box-sizing:border-box}
-    body{margin:0;width:360px;background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",Arial,sans-serif}
-    header{display:flex;align-items:center;gap:12px;padding:15px 18px;border-top:2px solid var(--accent);border-bottom:1px solid #353535;background:var(--panel)}
-    .shield{display:grid;place-items:center;width:38px;height:38px;border:1px solid #666;background:#292929;color:var(--accent);font-size:20px;font-weight:700}
+    body{margin:0;width:360px;background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",Roboto,Arial,sans-serif}
+    header{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid var(--border);background:var(--panel)}
+    .shield{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--border);border-radius:2px;background:var(--button);color:var(--accent);font-size:20px;font-weight:700}
     .title-wrap h1{margin:0;font-size:17px;font-weight:600}.title-wrap p{margin:2px 0 0;color:var(--muted);font-size:12px}
     main{padding:18px}
-    .status-card{display:flex;align-items:center;gap:11px;border:1px solid var(--border);padding:13px 14px;background:#171717}
-    .status-dot{width:11px;height:11px;border-radius:50%;background:var(--safe);box-shadow:0 0 0 3px rgba(99,212,113,.12)}
+    .status-card{display:flex;align-items:center;gap:11px;border:1px solid var(--border);border-radius:2px;padding:13px 14px;background:var(--panel)}
+    .status-dot{width:11px;height:11px;border-radius:50%;background:var(--safe);box-shadow:0 0 0 3px color-mix(in srgb,var(--safe) 18%,transparent)}
     .status-card strong{display:block;font-size:14px;font-weight:600}.status-card span{display:block;color:var(--muted);font-size:12px}
-    .section-title{margin:18px 0 8px;color:#d4d4d4;font-size:12px;font-weight:600;letter-spacing:.45px;text-transform:uppercase}
+    .section-title{margin:18px 0 8px;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.45px;text-transform:uppercase}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-    .stat{border:1px solid var(--border);padding:12px 7px;text-align:center;background:#171717}
+    .stat{border:1px solid var(--border);border-radius:2px;padding:12px 7px;text-align:center;background:var(--panel)}
     .stat strong{display:block;font-size:21px;font-weight:600}.stat span{color:var(--muted);font-size:11px}
-    .legend{border:1px solid var(--border);background:#171717}
-    .legend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #3b3b3b}.legend-row:last-child{border-bottom:0}
+    .legend{border:1px solid var(--border);border-radius:2px;background:var(--panel);overflow:hidden}
+    .legend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--border)}.legend-row:last-child{border-bottom:0}
     .legend-label{display:flex;align-items:center;gap:9px;font-weight:500}.dot{width:10px;height:10px;border-radius:50%}.green{background:var(--safe)}.yellow{background:var(--warn)}.red{background:var(--danger)}.legend small{color:var(--muted)}
-    button{width:100%;min-height:40px;margin-top:16px;border:1px solid #767676;border-radius:0;padding:9px 16px;background:var(--button);color:#fff;font:600 14px/1 "Segoe UI",Arial,sans-serif;cursor:pointer}
-    button:hover{background:var(--button-hover)}button:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
-    .note{margin:14px 0 0;color:#a9a9a9;font-size:11px;line-height:1.45}
+    button{width:100%;min-height:40px;margin-top:16px;border:1px solid var(--border);border-radius:2px;padding:9px 16px;background:var(--button);color:var(--text);font:600 14px/1 "Segoe UI",Roboto,Arial,sans-serif;cursor:pointer}
+    button:hover{background:var(--button-hover)}button:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 40%,transparent);outline-offset:1px}
+    .note{margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
   </style>
 </head>
 <body>
@@ -39,7 +67,7 @@
   <main>
     <section class="status-card" aria-label="Protection status">
       <span class="status-dot" aria-hidden="true"></span>
-      <div><strong>Protection is active</strong><span>Visible inbox messages are being checked locally.</span></div>
+      <div><strong>Protection is active</strong><span>Visible inbox messages are checked locally.</span></div>
     </section>
 
     <h2 class="section-title">Activity</h2>
