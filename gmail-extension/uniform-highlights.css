@@ -1,0 +1,49 @@
+/* Apply one consistent background color across every visible part of each Gmail row. */
+tr.safecircle-row-green,
+tr.safecircle-row-green > td,
+tr.safecircle-row-green > td > div,
+tr.safecircle-row-green > td > div > div{
+  background-color:#e8f5ec!important;
+}
+
+tr.safecircle-row-yellow,
+tr.safecircle-row-yellow > td,
+tr.safecircle-row-yellow > td > div,
+tr.safecircle-row-yellow > td > div > div{
+  background-color:#fff6d8!important;
+}
+
+tr.safecircle-row-red,
+tr.safecircle-row-red > td,
+tr.safecircle-row-red > td > div,
+tr.safecircle-row-red > td > div > div{
+  background-color:#fde8e6!important;
+}
+
+tr.safecircle-row-green:hover,
+tr.safecircle-row-green:hover > td,
+tr.safecircle-row-green:hover > td > div,
+tr.safecircle-row-green:hover > td > div > div{
+  background-color:#e8f5ec!important;
+}
+
+tr.safecircle-row-yellow:hover,
+tr.safecircle-row-yellow:hover > td,
+tr.safecircle-row-yellow:hover > td > div,
+tr.safecircle-row-yellow:hover > td > div > div{
+  background-color:#fff6d8!important;
+}
+
+tr.safecircle-row-red:hover,
+tr.safecircle-row-red:hover > td,
+tr.safecircle-row-red:hover > td > div,
+tr.safecircle-row-red:hover > td > div > div{
+  background-color:#fde8e6!important;
+}
+
+/* Remove the temporary left-side risk stripe. */
+tr.safecircle-row-green > td:first-child,
+tr.safecircle-row-yellow > td:first-child,
+tr.safecircle-row-red > td:first-child{
+  box-shadow:none!important;
+}
