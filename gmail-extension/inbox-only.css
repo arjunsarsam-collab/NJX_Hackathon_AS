@@ -1,0 +1,23 @@
+tr.safecircle-row-green:not(.zA),
+tr.safecircle-row-yellow:not(.zA),
+tr.safecircle-row-red:not(.zA),
+tr.safecircle-row-green:not(.zA) > td,
+tr.safecircle-row-yellow:not(.zA) > td,
+tr.safecircle-row-red:not(.zA) > td{
+  background-color:transparent!important;
+}
+
+tr.zA.safecircle-row-green,
+tr.zA.safecircle-row-green > td{
+  background-color:rgba(52,168,83,.055)!important;
+}
+
+tr.zA.safecircle-row-yellow,
+tr.zA.safecircle-row-yellow > td{
+  background-color:rgba(251,188,4,.085)!important;
+}
+
+tr.zA.safecircle-row-red,
+tr.zA.safecircle-row-red > td{
+  background-color:rgba(234,67,53,.075)!important;
+}
