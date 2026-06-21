@@ -104,7 +104,7 @@
   margin:0 0 10px!important;
   color:var(--cs-text)!important;
   text-align:center!important;
-  font-size:34px!important;
+  font-size:32px!important;
   font-weight:700!important;
   line-height:1.15!important;
   letter-spacing:-.03em;
@@ -112,17 +112,18 @@
 
 .safecircle-verdict{
   position:relative;
-  display:inline-grid!important;
+  display:grid!important;
   place-items:center;
-  min-width:188px;
-  min-height:98px;
-  margin:18px auto 20px!important;
+  width:min(430px,100%);
+  min-height:104px;
+  margin:20px auto 22px!important;
   border:1px solid var(--cs-border)!important;
   border-radius:14px!important;
-  padding:0 30px!important;
+  padding:22px 28px!important;
   text-align:center!important;
-  font:800 58px/1 Inter,"Segoe UI",Roboto,Arial,sans-serif!important;
-  letter-spacing:.08em!important;
+  font:800 34px/1.12 Inter,"Segoe UI",Roboto,Arial,sans-serif!important;
+  letter-spacing:.015em!important;
+  text-transform:uppercase;
   overflow:hidden;
 }
 
@@ -148,18 +149,19 @@
 }
 
 .safecircle-more{
-  display:inline-flex!important;
+  display:flex!important;
   align-items:center;
   justify-content:center;
-  min-width:118px;
-  min-height:42px;
+  width:176px;
+  min-height:44px;
   margin:0 auto!important;
   border:1px solid color-mix(in srgb,var(--cs-accent) 35%,var(--cs-border))!important;
   border-radius:10px!important;
-  padding:9px 18px!important;
+  padding:10px 20px!important;
   background:linear-gradient(180deg,color-mix(in srgb,var(--cs-accent) 9%,var(--cs-card)),var(--cs-panel))!important;
   color:var(--cs-accent)!important;
   font:700 14px/1 Inter,"Segoe UI",Roboto,Arial,sans-serif!important;
+  letter-spacing:.01em;
   cursor:pointer;
   transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
 }
@@ -314,8 +316,9 @@
 @media(max-width:600px){
   .safecircle-dialog{width:calc(100vw - 18px)!important}
   .safecircle-dialog-body{padding:26px 22px 24px!important}
-  .safecircle-question{font-size:29px!important}
-  .safecircle-verdict{font-size:48px!important;min-width:154px;min-height:82px}
+  .safecircle-question{font-size:27px!important}
+  .safecircle-verdict{font-size:29px!important;min-height:92px;padding:20px!important}
+  .safecircle-more{width:166px}
   .safecircle-actions{flex-direction:column-reverse!important}
   .safecircle-actions button{width:100%!important}
 }
