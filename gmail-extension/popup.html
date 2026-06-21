@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SafeCircle Gmail Guard</title>
+  <style>
+    body{margin:0;width:330px;font:15px/1.45 Arial,sans-serif;background:#f5f8fc;color:#17345f}main{padding:18px}h1{margin:0 0 4px;font-size:22px}.tagline{margin:0 0 16px;color:#607089}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(23,52,95,.08)}.stat strong{display:block;font-size:24px}.legend{margin-top:14px;background:#fff;border-radius:14px;padding:12px}.legend p{margin:7px 0}.note{font-size:12px;color:#607089;margin-top:12px}button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:11px;background:#0b57d0;color:#fff;font-weight:800;cursor:pointer}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SafeCircle Gmail Guard</h1>
+    <p class="tagline">See the risk before you open the email.</p>
+    <section class="stats" aria-label="Scan totals">
+      <div class="stat"><strong id="scanned">0</strong><span>Scanned</span></div>
+      <div class="stat"><strong id="yellow">0</strong><span>Caution</span></div>
+      <div class="stat"><strong id="red">0</strong><span>High risk</span></div>
+    </section>
+    <section class="legend">
+      <p>🟢 <strong>Looks okay</strong></p>
+      <p>🟡 <strong>Be careful</strong></p>
+      <p>🔴 <strong>High phishing risk</strong></p>
+    </section>
+    <button id="reset">Reset totals</button>
+    <p class="note">SafeCircle analyzes only the sender, subject, and preview text visible in your Gmail inbox. It does not upload or store email content.</p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
